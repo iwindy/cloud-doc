@@ -1,13 +1,14 @@
-import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import FileSearch from "./components/FilelSearch";
 
 function App() {
   return (
-    <div className="App container-fluid" >
+    <div className="App container-fluid">
       <div className="row">
         <div className="col-3 bg-light left-panel">
-          <h1>this left</h1>
+          <FileSearch title="我的文档" onFileSearch={() => {}} />
         </div>
         <div className="col-9 bg-primary right-panel">
           <h1>this right</h1>
