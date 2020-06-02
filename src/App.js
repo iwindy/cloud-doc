@@ -8,7 +8,12 @@ function App() {
     <div className="App container-fluid">
       <div className="row">
         <div className="col-3 bg-light left-panel">
-          <FileSearch title="我的文档" onFileSearch={() => {}} />
+          <FileSearch
+            title="我的文档"
+            onFileSearch={(value) => {
+              console.log(value);
+            }}
+          />
         </div>
         <div className="col-9 bg-primary right-panel">
           <h1>this right</h1>
