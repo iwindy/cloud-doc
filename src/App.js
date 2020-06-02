@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import FileSearch from "./components/FilelSearch";
+import FileList from "./components/FileList";
+import defaultFiles from "./utlis/defaultFiles";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
               console.log(value);
             }}
           />
+          <FileList files={defaultFiles} />
         </div>
         <div className="col-9 bg-primary right-panel">
           <h1>this right</h1>
