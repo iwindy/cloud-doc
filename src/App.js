@@ -16,7 +16,18 @@ function App() {
               console.log(value);
             }}
           />
-          <FileList files={defaultFiles} />
+          <FileList
+            files={defaultFiles}
+            onFlieClick={(id) => {
+              console.log(id);
+            }}
+            onFileDelete={(id) => {
+              console.log("deleteing", id);
+            }}
+            onSaveEdit={(id, newValue) => {
+              console.log(id, newValue);
+            }}
+          />
         </div>
         <div className="col-9 bg-primary right-panel">
           <h1>this right</h1>
