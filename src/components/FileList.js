@@ -43,23 +43,23 @@ const FileList = ({ files, onFlieClick, onSaveEdit, onFileDelete }) => {
     }; */
   });
   return (
-    <ul className="list-group list-group-flush row">
+    <ul className="list-group list-group-flush">
       {files.map((file) => (
-        <li className="list-group-item bg-light d-flex" key={file.id}>
+        <li className="list-group-item bg-light row d-flex mx-0" key={file.id}>
           {file.id !== editStatus && (
             <>
               <span className="col-2">
                 <FontAwesomeIcon size="lg" icon={faMarkdown} />
               </span>
               <span
-                className="col-8 c-link"
+                className="col-6 c-link"
                 onClick={() => {
                   onFlieClick(file.id);
                 }}
               >
                 {file.title}
               </span>
-              <span className="icon-button col-1">
+              <span className="icon-button col-2">
                 <FontAwesomeIcon
                   title="编辑"
                   onClick={() => {
@@ -70,7 +70,7 @@ const FileList = ({ files, onFlieClick, onSaveEdit, onFileDelete }) => {
                   icon={faEdit}
                 />
               </span>
-              <span className="icon-button col-1">
+              <span className="icon-button col-2">
                 <FontAwesomeIcon
                   title="删除"
                   onClick={() => {
