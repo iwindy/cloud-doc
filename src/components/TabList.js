@@ -27,7 +27,13 @@ const TabList = ({ files, activeId, unsaveIds, onTabClick, onCloseTab }) => {
             >
               {file.title}
               <span className="close-icon ml-2">
-                <FontAwesomeIcon icon={faTimes} />
+                <FontAwesomeIcon
+                  icon={faTimes}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onCloseTab(file.id);
+                  }}
+                />
               </span>
               {withUnsavedMark && (
                 <span className="rounded-circle ml-2 unsaved-icon"></span>
