@@ -86,7 +86,7 @@ const FileList = ({ files, onFlieClick, onSaveEdit, onFileDelete }) => {
             <>
               <input
                 type="text"
-                className="form-control clo-10"
+                className="form-control col-10"
                 value={value}
                 onChange={(e) => {
                   setValue(e.target.value);
@@ -94,7 +94,7 @@ const FileList = ({ files, onFlieClick, onSaveEdit, onFileDelete }) => {
               />
               <button
                 type="button"
-                className="icon-button clo-2"
+                className="icon-button col-2"
                 onClick={closeSearch}
               >
                 <FontAwesomeIcon title="关闭" size="lg" icon={faTimes} />

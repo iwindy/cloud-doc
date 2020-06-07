@@ -50,6 +50,7 @@ function App() {
             onTabClick={(id) => {
               console.log(id);
             }}
+            unsaveIds={["1", "2"]}
             activeId="1"
           />
         </div>

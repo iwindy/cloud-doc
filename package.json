@@ -44,6 +44,7 @@
     "cross-env": "^7.0.2",
     "electron": "^9.0.0",
     "electron-is-dev": "^1.2.0",
+    "node-sass": "^4.14.1",
     "wait-on": "^5.0.0"
   }
 }
