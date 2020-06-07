@@ -8,7 +8,7 @@ const BottomBtn = ({ text, colorClass, icon, onBtnClick }) => (
     className={`btn btn-block no-border ${colorClass}`}
     onClick={onBtnClick}
   >
-    <FontAwesomeIcon className="mr-2" size="lg" icon={icon} />
+    <FontAwesomeIcon className="no-border mr-2" size="lg" icon={icon} />
     {text}
   </button>
 );

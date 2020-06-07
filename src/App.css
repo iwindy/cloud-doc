@@ -8,3 +8,25 @@
 .c-link {
   cursor: pointer;
 }
+
+.start-page {
+  font-size: 30px;
+  height: 300px;
+  line-height: 300px;
+  color: #cccccc;
+  text-align: center;
+}
+
+.left-panel {
+  position: relative;
+  min-height: 100vh;
+}
+
+.button-group {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.no-border {
+  border-radius: 0 !important;
+}
