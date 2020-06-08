@@ -18,6 +18,41 @@ function App() {
   const openedFiles = openedFileIDs.map((openID) => {
     return files.find((file) => file.id === openID);
   });
+  const fileClick = (fileID) => {
+    setActiveFileId(fileID);
+    if (!openedFileIDs.includes(fileID)) {
+      setOpenedFileIDs([...openedFileIDs, fileID]);
+    }
+  };
+
+  const tabClick = (fileID) => {
+    setActiveFileId(fileID);
+  };
+
+  const closeTab = (id) => {
+    const tabsWithout = openedFileIDs.filter((fileID) => fileID !== id);
+    setOpenedFileIDs(tabsWithout);
+    let tabLen = tabsWithout.length;
+    if (tabLen > 0) {
+      id === activeFileId && setActiveFileId(tabsWithout[tabLen - 1]);
+    } else {
+      setActiveFileId("");
+    }
+  };
+
+  const fileChange = (id, value) => {
+    const newFile = files.map((file) => {
+      if (file.id === id) {
+        file.body = value;
+      }
+      return file;
+    });
+    setFiles(newFile);
+    if (!unsavedFileIDs.includes(id)) {
+      setUnsavedFileIDs([...unsavedFileIDs, id]);
+    }
+  };
+
   const activeFile = files.find((file) => file.id === activeFileId);
   return (
     <div className="App container-fluid px-0">
@@ -31,9 +66,7 @@ function App() {
           />
           <FileList
             files={files}
-            onFlieClick={(id) => {
-              console.log(id);
-            }}
+            onFlieClick={fileClick}
             onFileDelete={(id) => {
               console.log("deleteing", id);
             }}
@@ -61,20 +94,17 @@ function App() {
           {activeFile && (
             <>
               <TabList
-                files={defaultFiles}
+                files={openedFiles}
                 unsaveIds={unsavedFileIDs}
                 activeId={activeFileId}
-                onTabClick={(id) => {
-                  console.log(id);
-                }}
-                onCloseTab={(id) => {
-                  console.log("closing ", id);
-                }}
+                onTabClick={tabClick}
+                onCloseTab={closeTab}
               />
               <SimpleMDE
-                value={activeFile}
+                key={activeFile && activeFile.id}
+                value={activeFile && activeFile.body}
                 onChange={(value) => {
-                  console.log(value);
+                  fileChange(activeFile.id, value);
                 }}
                 options={{
                   minHeight: "515px",
