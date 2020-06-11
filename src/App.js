@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "easymde/dist/easymde.min.css";
-import FileSearch from "./components/FilelSearch";
+import FileSearch from "./components/FileSearch";
 import FileList from "./components/FileList";
 import BottomBtn from "./components/BottomBtn";
 import TabList from "./components/TabList";
@@ -16,6 +16,8 @@ function App() {
   const [activeFileId, setActiveFileId] = useState("");
   const [openedFileIDs, setOpenedFileIDs] = useState([]);
   const [unsavedFileIDs, setUnsavedFileIDs] = useState([]);
+  const [searchedFiles, setSearchedFiles] = useState([]);
+
   const openedFiles = openedFileIDs.map((openID) => {
     return files.find((file) => file.id === openID);
   });
@@ -39,6 +41,27 @@ function App() {
     } else {
       setActiveFileId("");
     }
+  };
+
+  const deleteFile = (id) => {
+    const newFile = files.filter((file) => id !== file.id);
+    setFiles(newFile);
+    closeTab(id);
+  };
+
+  const updateFileName = (id, title) => {
+    const newFiles = files.map((file) => {
+      if (file.id === id) {
+        file.title = title;
+      }
+      return file;
+    });
+    setFiles(newFiles);
+  };
+
+  const fileSearch = (keyword) => {
+    const newFiles = files.filter((file) => file.title.includes(keyword));
+    setSearchedFiles(newFiles);
   };
 
   const fileChange = (id, value) => {
@@ -70,25 +93,18 @@ function App() {
   };
 
   const activeFile = files.find((file) => file.id === activeFileId);
+  const fileListArr = searchedFiles.length > 0 ? searchedFiles : files;
+
   return (
     <div className="App container-fluid px-0">
       <div className="row no-gutters">
         <div className="col-3 bg-light left-panel">
-          <FileSearch
-            title="我的文档"
-            onFileSearch={(value) => {
-              console.log(value);
-            }}
-          />
+          <FileSearch title="我的文档" onFileSearch={fileSearch} />
           <FileList
-            files={files}
+            files={fileListArr}
             onFlieClick={fileClick}
-            onFileDelete={(id) => {
-              console.log("deleteing", id);
-            }}
-            onSaveEdit={(id, newValue) => {
-              console.log(id, newValue);
-            }}
+            onFileDelete={deleteFile}
+            onSaveEdit={updateFileName}
           />
           <div className="row  no-gutters button-group">
             <div className="col">
