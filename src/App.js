@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { faPlus, faFileImport } from "@fortawesome/free-solid-svg-icons";
 import SimpleMDE from "react-simplemde-editor";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "easymde/dist/easymde.min.css";
@@ -53,6 +54,21 @@ function App() {
     }
   };
 
+  const createNewFile = () => {
+    const newID = uuidv4();
+    const newFiles = [
+      ...files,
+      {
+        id: newID,
+        title: "",
+        body: "## 请输入 Markdown",
+        createAt: new Date().getTime(),
+        isNew: true,
+      },
+    ];
+    setFiles(newFiles);
+  };
+
   const activeFile = files.find((file) => file.id === activeFileId);
   return (
     <div className="App container-fluid px-0">
@@ -76,7 +92,12 @@ function App() {
           />
           <div className="row  no-gutters button-group">
             <div className="col">
-              <BottomBtn text="新建" colorClass="btn-primary" icon={faPlus} />
+              <BottomBtn
+                text="新建"
+                colorClass="btn-primary"
+                onBtnClick={createNewFile}
+                icon={faPlus}
+              />
             </div>
             <div className="col">
               <BottomBtn
