@@ -50,9 +50,11 @@ function App() {
   };
 
   const updateFileName = (id, title) => {
+    console.log(id, title);
     const newFiles = files.map((file) => {
       if (file.id === id) {
         file.title = title;
+        file.isNew = false;
       }
       return file;
     });
